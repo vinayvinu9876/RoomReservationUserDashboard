@@ -7,7 +7,7 @@ const initialState = {
     rooms_data : []
 };
 
-export const roomSlice = createSlice({
+const roomSlice = createSlice({
     name : "rooms",
     initialState : initialState,
     reducers : {

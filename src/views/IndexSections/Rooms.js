@@ -55,6 +55,7 @@ const Rooms = () =>{
                         return (
                             <Room 
                                 key={"room"+index} 
+                                room_id = {val["room_data"]["room_id"]}
                                 features={val["room_features"]}
                                 room_capacity={val["room_data"]["room_capacity"]} 
                                 room_name={val["room_data"]["room_name"]} 
@@ -76,6 +77,7 @@ const Rooms = () =>{
 }
 
 const Room = ({
+    room_id,
     room_name,
     room_capacity,
     features,
@@ -132,7 +134,7 @@ const Room = ({
                                 </Row>
                                 <Col>
                                     <Row>
-                                        <Link style={{paddingRight:"10px"}} to="/view-room">
+                                        <Link style={{paddingRight:"10px"}} to={`/view-room?room_id=${room_id}`}>
                                             <Button color="primary" type="button">
                                                 Book Now
                                             </Button>

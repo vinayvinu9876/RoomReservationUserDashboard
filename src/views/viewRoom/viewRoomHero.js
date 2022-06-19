@@ -20,8 +20,12 @@ import React from "react";
 import "react-slideshow-image/dist/styles.css";
 // reactstrap components
 import {  Container, Row, Col} from "reactstrap";
+import {AtomSpinner} from 'react-epic-spinners';
 
 class ViewRoomHero extends React.Component {
+
+  
+
   render() {
     return (
       <>
@@ -46,14 +50,28 @@ class ViewRoomHero extends React.Component {
                 <Row className="align-items-center justify-content-center">
                   <Col className="text-center" lg="6">
                     <div>
-                      <p style={{color:"white",fontWeight:"bold",fontSize:"48px",fontFamily:"times"}}>
-                        Room A35
-                        <span style={{color:"white",fontSize:"24px"}}></span>
-                      </p>
+                      {
+                        (!this.props.loading) && (this.props.roomName) &&
+                        <p style={{color:"white",fontWeight:"bold",fontSize:"48px",fontFamily:"times"}}>
+                          Room {this.props.roomName}
+                          <span style={{color:"white",fontSize:"24px"}}></span>
+                        </p>
+                      }
+                      {
+                        (this.props.loading) &&
+                        <center><AtomSpinner color={"white"}  /></center> 
+                      }
+                      {
+                        (this.props.errMessage) &&
+                        <p style={{color:"#ffcccc",fontWeight:"800",fontSize:"18px"}}>A Problem occured. {this.props.errMessage}</p>
+                      }
                     </div>
-                    <p className="lead text-white">
-                      Please set appropriate priority while booking
-                    </p>
+                    {
+                      (!this.props.loading) && (!this.props.errMessage) &&
+                      <p className="lead text-white">
+                        Please set appropriate priority while booking
+                      </p>
+                    }
                   </Col>    
                 </Row>
               </div>
@@ -77,9 +95,12 @@ class ViewRoomHero extends React.Component {
           </section>
         </div>
         <br />
-        <div style={{padding:"20px",width:"100%"}}>
-            <center><p style={{fontSize:"20px",fontWeight:"bold"}}>Room A35</p></center>
-        </div>
+        {
+          (!this.props.loading) && (this.props.roomName) &&
+          <div style={{padding:"20px",width:"100%"}}>
+              <center><p style={{fontSize:"20px",fontWeight:"bold"}}>Room  {this.props.roomName}</p></center>
+          </div>
+        }
       </>
     );
   }

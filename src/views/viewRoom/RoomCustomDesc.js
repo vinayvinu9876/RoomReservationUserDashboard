@@ -1,7 +1,8 @@
 import React from "react";
 import {Col,Card, CardBody, CardHeader} from 'reactstrap';
 
-const RoomCustomDesc = () => {
+const RoomCustomDesc = ({description}) => {
+    
 
     return (
         <>
@@ -10,11 +11,7 @@ const RoomCustomDesc = () => {
                     <CardHeader>
                         Room Description
                     </CardHeader>
-                    <CardBody>
-                        <h1>Hello world!!! a</h1>
-                        <p>hi, how are you ?</p>
-                        <p>okay. it works.</p>
-                    </CardBody>
+                    <CardBody dangerouslySetInnerHTML={{__html: description}}></CardBody>
                 </Card>
             </Col>
         </>
